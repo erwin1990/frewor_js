@@ -17,16 +17,6 @@ function blanco(elemento) {
   )
 }
 
-var car1 = "<div class='caramelo'><img src='image/1.png'/></div>"
-var car2 = "<div class='caramelo'><img src='image/2.png'/></div>"
-var car3 = "<div class='caramelo'><img src='image/3.png'/></div>"
-var car3 = "<div class='caramelo'><img src='image/4.png'/></div>"
-
-$(".col-1").attr("src",function(){
-  var numero = Math.floor((Math.random() * 3) +1);
-  var ruta = "image/"+numero+".png";
-  return ruta;
-});
 
 $( function() {
 
@@ -34,7 +24,16 @@ $( function() {
   blanco($(".main-titulo"));
 
 
-  $(".col-1").append(car1)
+ var columnas = $(".panel-tablero div");
+  for (var i = 0; i < columnas.length; i++){
+  for (var j = 0; j < 5; j++){
+    var numero = Math.floor((Math.random() * 4) +1);
+    var car = "<div class='caramelo'><img src='image/"+numero+".png' /></div>"
+     $(".col-"+i).append(car)
+  }};
+
+
+
 
 
 });
