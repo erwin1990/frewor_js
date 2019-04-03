@@ -11,7 +11,7 @@ $(function(){
     })
 
   $("#fold").on("click", function(){
-    $(".panel-imagen").hide("fold",1000)
+    $(".panel-imagen").hide("pulsate",1000)
   })
   $("#bounce").on("click", function(){
     $(".panel-imagen").show("bounce",1000)

@@ -25,18 +25,28 @@ function abajo(elemento) {
     }
   )
 }
+function caramelos() {
+  var columnas = $(".panel-tablero div");
+   for (var i = 0; i < 8; i++){
+   for (var j = 0; j < 5; j++){
+     var numero = Math.floor((Math.random() * 4) +1);
+     var caramelo = "<img src='image/"+numero+".png'/>"
+      $(".col-"+i).append(caramelo)
+   }};
+}
 
+// funcionas validacion de 3 caramelos en linia
 function horizontal() {
   var bushori=0;
-  for (var i = 0; i < 8; i++){
-    for (var i = 0; i < 6; i++){
-      var res1=$(".col-"+k).children("img:nth-last-child("+j+")").attr("src");
-      var res2=$(".col-"+(k+1)).children("img:nth-last-child("+j+")").attr("src");
-      var res3=$(".col-"+(k+2)).children("img:nth-last-child("+j+")").attr("src");
+  for (var j = 0; j < 8; j++){
+    for (var k = 0; k < 6; k++){
+      var res1=$(".col-"+k).children("img("+j+")").attr("src");
+      var res2=$(".col-"+(k+1)).children("img("+j+")").attr("src");
+      var res3=$(".col-"+(k+2)).children("img("+j+")").attr("src");
       if((res1==res2) && (res2==res3) && (res1!=null) && (res2!=null) && (res3!=null)) {
-        $(".col-"+k).children("img:nth-last-child("+j+")").attr("class","elemento activo");
-        $$(".col-"+(k+1)).children("img:nth-last-child("+j+")").attr("class","elemento activo");
-        $$(".col-"+(k+2)).children("img:nth-last-child("+j+")").attr("class","elemento activo");
+        $(".col-"+k).children("img").attr("class","activo");
+        $(".col-"+(k+1)).children("img").attr("class","activo");
+        $(".col-"+(k+2)).children("img").attr("class","activo");
         busHori=1;
       }
     }
@@ -45,42 +55,42 @@ function horizontal() {
 };
 
 function vertical() {
-  var bushori=0;
-  for (var i = 0; i < 6; i++){
-    for (var i = 0; i < 8; i++){
-      var res1=$(".col-"+k).children("img:nth-last-child("+j+")").attr("src");
-      var res2=$(".col-"+(k+1)).children("img:nth-last-child("+j+")").attr("src");
-      var res3=$(".col-"+(k+2)).children("img:nth-last-child("+j+")").attr("src");
+  var busVerti=0;
+  for (var j = 0; j < 6; j++){
+    for (var k = 0; k < 8; k++){
+      var res1=$(".col-"+k).children("img("+j+")").attr("src");
+      var res2=$(".col-"+(k+1)).children("img("+j+")").attr("src");
+      var res3=$(".col-"+(k+2)).children("img("+j+")").attr("src");
       if((res1==res2) && (res2==res3) && (res1!=null) && (res2!=null) && (res3!=null)) {
-        $(".col-"+k).children("img:nth-last-child("+j+")").attr("class","elemento activo");
-        $$(".col-"+(k+1)).children("img:nth-last-child("+j+")").attr("class","elemento activo");
-        $$(".col-"+(k+2)).children("img:nth-last-child("+j+")").attr("class","elemento activo");
-        busHori=1;
+        $(".col-"+k).children("img").attr("class","activo");
+        $(".col-"+(k+1)).children("img").attr("class","activo");
+        $(".col-"+(k+2)).children("img").attr("class","activo");
+        busVerti=1;
       }
     }
   }
-  return busHori;
+  return busVerti;
 };
-
-
-
-
-
+//funcion para eliminar los caramelos y retornar el valor
+function booster(busVerti,busHori) {
+  var boosH = busHori * 100
+  var boos2 = busVerti + busHori * 200
+  var boosV = busVerti * 100
+  if (busHori = 1) {
+    $(".activo").hide("pulsate",1000)
+  }
+  if (busVerti = 1) {
+    $(".activo").hide("pulsate",1000)
+  }
+  return boosH + boosV + boos2
+}
 
 $( function() {
-
   amarrillo($(".main-titulo"));
   blanco($(".main-titulo"));
 
-
-
- var columnas = $(".panel-tablero div");
-  for (var i = 0; i < 8; i++){
-  for (var j = 0; j < 5; j++){
-    var numero = Math.floor((Math.random() * 4) +1);
-    var car = "<div class='caramelo+'-'+numero'><img src='image/"+numero+".png' /></div>"
-     $(".col-"+i).append(car)
-  }};
-
+  $(".btn-reinicio").click(function(){
+    caramelos()
+  });
 
 });
